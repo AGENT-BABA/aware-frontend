@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Bot, User, Sparkles, Loader2, Search } from 'lucide-react';
-import axios from 'axios';
+import api from '../api';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const AIChat = () => {
@@ -27,7 +27,7 @@ const AIChat = () => {
     setLoading(true);
 
     try {
-      const resp = await axios.post('/api/chat', 
+      const resp = await api.post('/api/chat', 
         { query },
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );

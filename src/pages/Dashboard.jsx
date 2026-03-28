@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api';
 import Navbar from '../components/Navbar';
 import { CostGraph, CPUGraph } from '../components/Visuals';
 import { AnomalyTable, ActionsTable } from '../components/Tables';
@@ -19,9 +19,9 @@ const Dashboard = ({ onLogout }) => {
     const headers = { Authorization: `Bearer ${token}` };
     try {
       const [dataRes, anomRes, actRes] = await Promise.all([
-        axios.get('/api/data', { headers }),
-        axios.get('/api/anomalies', { headers }),
-        axios.get('/api/actions', { headers })
+        api.get('/api/data', { headers }),
+        api.get('/api/anomalies', { headers }),
+        api.get('/api/actions', { headers })
       ]);
       setData(dataRes.data);
       setAnomalies(anomRes.data);

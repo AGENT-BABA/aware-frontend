@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 import { motion } from 'framer-motion';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import Navbar from '../components/Navbar';
@@ -19,8 +19,8 @@ const Billing = ({ onLogout }) => {
       const headers = { Authorization: `Bearer ${token}` };
       try {
         const [dataRes, anomaliesRes] = await Promise.all([
-          axios.get('/api/data', { headers }),
-          axios.get('/api/anomalies', { headers }),
+          api.get('/api/data', { headers }),
+          api.get('/api/anomalies', { headers }),
         ]);
         setData(dataRes.data || []);
         setAnomalies(anomaliesRes.data || []);

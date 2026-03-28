@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Bot, MessageCircle, Send, X, Loader2, Search } from 'lucide-react';
-import axios from 'axios';
+import api from '../api';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const FloatingChatWidget = () => {
@@ -116,10 +116,9 @@ const FloatingChatWidget = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post(
+      const response = await api.post(
         '/api/chat',
-        { query },
-        { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
+        { query }
       );
       setMessages([...nextMessages, { role: 'bot', content: response.data.response }]);
     } catch (error) {

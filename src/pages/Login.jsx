@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 import { Shield, Lock, User, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -16,7 +16,7 @@ const Login = ({ onLogin }) => {
     setLoading(true);
     setError('');
     try {
-      const resp = await axios.post('/api/login', { username, password });
+      const resp = await api.post('/api/login', { username, password });
       localStorage.setItem('username', username);
       if (resp.data.email) {
         localStorage.setItem('email', resp.data.email);

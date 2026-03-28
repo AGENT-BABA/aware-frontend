@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 import { UserPlus, User, Lock, Mail, ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -18,7 +18,7 @@ const Signup = () => {
     setLoading(true);
     setError('');
     try {
-      await axios.post('/api/signup', { username, password, email });
+      await api.post('/api/signup', { username, password, email });
       setSuccess(true);
       setTimeout(() => navigate('/login'), 2000);
     } catch (err) {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 import { Key, ShieldCheck, Cpu, Info, ArrowRight, Lock } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -19,7 +19,7 @@ const AWSKeys = ({ onKeysSet }) => {
     setSuccess('');
     const token = localStorage.getItem('token');
     try {
-      await axios.post('/api/aws-keys',
+      await api.post('/api/aws-keys',
         { accessKey, secretKey },
         { headers: { Authorization: `Bearer ${token}` } }
       );

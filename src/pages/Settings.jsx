@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ShieldCheck, User, Mail, Lock, Key, ArrowRight } from 'lucide-react';
-import axios from 'axios';
+import api from '../api';
 import Navbar from '../components/Navbar';
 
 const maskValue = (value) => {
@@ -37,7 +37,7 @@ const Settings = ({ onLogout }) => {
     setPasswordMessage('');
     try {
       const token = localStorage.getItem('token');
-      await axios.post(
+      await api.post(
         '/api/change-password',
         { password: nextPassword },
         { headers: { Authorization: `Bearer ${token}` } }
@@ -57,7 +57,7 @@ const Settings = ({ onLogout }) => {
     setAwsMessage('');
     try {
       const token = localStorage.getItem('token');
-      await axios.post(
+      await api.post(
         '/api/aws-keys',
         { accessKey, secretKey },
         { headers: { Authorization: `Bearer ${token}` } }
